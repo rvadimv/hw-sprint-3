@@ -1,0 +1,62 @@
+.message {
+    padding: 12px 0;
+}
+
+.imageAndText {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+
+.imageAndText img {
+    width: 48px;
+    height: 48px;
+}
+
+.text {
+    position: relative; /* Позволяет позиционировать псевдоэлементы относительно этого блока */
+    background-color: #007bff; /* Синий фон */
+    color: white; /* Цвет текста */
+    padding: 8px 15px; /* Внутренние отступы */
+    border-radius: 10px; /* Закругленные углы */
+    max-width: 527px; /* Максимальная ширина сообщения */
+    /*margin: 20px; !* Отступы вокруг блока *!*/
+    margin: 0 10px 0 0;
+}
+
+.text:after {
+    content: ''; /* Псевдоэлемент без контента */
+    position: absolute; /* Абсолютное позиционирование относительно родителя */
+    bottom: 0; /* Располагаем внизу */
+    right: -10px; /* Сдвигаем вправо за пределы блока */
+    width: 0;
+    height: 0;
+    border: 20px solid transparent; /* Треугольник из прозрачных границ */
+    border-bottom-color: #007bff; /* Цвет треугольника совпадает с цветом блока */
+    border-left: 0; /* Убираем правую границу */
+}
+
+.name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    justify-content: flex-end;
+    display: flex
+}
+
+.messageText {
+    white-space: pre-wrap;
+}
+
+.time {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    color: #000;
+    display: flex;
+    justify-content: flex-end;
+    left: -10px;
+    position: relative;
+    margin-top: 5px;
+}
