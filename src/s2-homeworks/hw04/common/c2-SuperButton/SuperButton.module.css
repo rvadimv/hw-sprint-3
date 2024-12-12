@@ -8,7 +8,7 @@
 }
 
 .disabled {
-    width: 133px;
+    /*width: 133px;*/
     height: 30px;
     background: #004d99;
     opacity: 0.5;
