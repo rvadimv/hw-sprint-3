@@ -29,11 +29,11 @@ const HW12 = () => {
         dispatch(changeThemeId(id))
 
     }
-    const themeMode = Number(localStorage.getItem('themeMode'))
+    // const themeMode = Number(localStorage.getItem('themeMode'))
 
     useEffect(() => {
-        document.documentElement.dataset.theme = themeMode + ''
-    }, [themeMode])
+        document.documentElement.dataset.theme = themeId + ''
+    }, [themeId])
 
     return (
         <div id={'hw12'}>
@@ -48,7 +48,7 @@ const HW12 = () => {
                     className={s.select}
                     onChangeOption={change}
                     options={themes}
-                    value={themeMode}
+                    value={themeId}
                     // сделать переключение тем
 
                 />
