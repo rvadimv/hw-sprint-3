@@ -38,18 +38,18 @@ const HW14 = () => {
                 if (techs) {
                     setTechs(techs)
                 }
-                setLoading(false)
+
                 // делает студент
 
                 // сохранить пришедшие данные
 
                 //
-            })
+            }).finally(() => setLoading(false))
     }
 
     const onChangeText = (value: string) => {
         setFind(value)
-        setSearchParams({ find: value })
+        setSearchParams({find: value})
         // делает студент
 
         // добавить/заменить значение в квери урла
@@ -62,7 +62,7 @@ const HW14 = () => {
         const params = Object.fromEntries(searchParams)
         sendQuery(params.find || '')
         setFind(params.find || '')
-    }, [searchParams])
+    }, [])
 
     const mappedTechs = techs.map(t => (
         <div key={t} id={'hw14-tech-' + t} className={s.tech}>
@@ -76,10 +76,10 @@ const HW14 = () => {
 
             <div className={s2.hw}>
                 <SuperDebouncedInput className={s.input}
-                    id={'hw14-super-debounced-input'}
-                    value={find}
-                    onChangeText={onChangeText}
-                    onDebouncedChange={sendQuery}
+                                     id={'hw14-super-debounced-input'}
+                                     value={find}
+                                     onChangeText={onChangeText}
+                                     onDebouncedChange={sendQuery}
                 />
 
                 <div id={'hw14-loading'} className={s.loading}>
