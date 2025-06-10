@@ -1,11 +1,17 @@
+.pagination select{
+    width: 80px;
+}
 .pagination {
     display: flex;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    align-items: center;
 }
-
 .text1 {
-
+    padding-right: 10px;
+    padding-left: 25px;
 }
 
 .text2 {
-
+    padding-left: 10px;
 }

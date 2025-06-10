@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {CircularProgress} from "@mui/material";
 
 /*
 * 1 - дописать SuperPagination
@@ -51,17 +52,27 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+
+                if (res?.data) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
                 // делает студент
 
                 // сохранить пришедшие данные
 
                 //
-            })
+            }).finally(() => setLoading(false))
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
+        setPage(newPage)
+        setCount(newCount)
+        sendQuery({page: newPage, count: newCount})
+        let newPageString = newPage.toString()
+        let newPageStringString = newCount.toString()
+        setSearchParams({page: newPageString, count: newPageStringString,sort})
         // setPage(
         // setCount(
 
@@ -73,7 +84,10 @@ const HW15 = () => {
 
     const onChangeSort = (newSort: string) => {
         // делает студент
-
+        setSort(newSort)
+        setPage(1)
+        sendQuery({sort: newSort, page: 1, count})
+        setSearchParams({sort: newSort, page: '1', count: count.toString()})
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
 
@@ -88,7 +102,8 @@ const HW15 = () => {
         sendQuery({page: params.page, count: params.count})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
-    }, [])
+        setSort(params.sort || '')
+    }, [searchParams])
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
@@ -104,11 +119,10 @@ const HW15 = () => {
 
     return (
         <div id={'hw15'}>
+            {idLoading && <div id={'hw15-loading'} className={s.loading}><CircularProgress /></div>}
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
-
                 <SuperPagination
                     page={page}
                     itemsCountForPage={count}
